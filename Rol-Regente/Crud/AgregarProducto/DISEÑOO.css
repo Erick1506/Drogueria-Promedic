@@ -1,0 +1,155 @@
+/* Reset de márgenes y paddings */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Montserrat", sans-serif; /* Fuente general */
+}
+
+/* Estilo del body */
+body {
+    background-image: url('../cuadro.jpg'); /* Ruta de la imagen */
+    background-size: cover; /* Asegura que la imagen cubra toda la pantalla */
+    background-attachment: fixed; /* Mantiene la imagen fija al hacer scroll */
+    background-position: center; /* Centra la imagen */
+    background-repeat: no-repeat; /* Evita que la imagen se repita */
+    min-height: 100vh; /* Asegura que el fondo cubra toda la pantalla */
+}
+
+/* Estilo del contenedor principal */
+.container {
+    margin-top: 100px; /* Menos margen superior */
+    width: 100%; /* Asegura que el contenedor ocupe todo el espacio disponible */
+    max-width: 600px; /* Tamaño máximo para pantallas grandes */
+    background-color: rgba(255, 255, 255, 0.9); /* Fondo blanco con opacidad */
+    border-radius: 15px;
+    box-shadow: 0 0 10px rgba(30, 120, 205, 0.8);
+    padding: 20px;
+    box-sizing: border-box; /* Asegura que el padding no afecte el tamaño */
+}
+
+/* Estilo del título */
+.container h2 {
+    font-size: 18px; /* Tamaño de fuente más pequeño */
+    margin-bottom: 10px; /* Espaciado reducido */
+    text-align: center;
+    color: #1e78cd; /* Color principal */
+}
+
+/* Estilo del formulario */
+form {
+    margin-bottom: 15px; /* Espaciado reducido */
+    width: 100%;
+}
+
+/* Estilo de las etiquetas */
+label {
+    display: block;
+    margin-top: 8px; /* Espaciado reducido */
+    font-weight: bold;
+}
+
+/* Estilo de los inputs */
+input, .form-control, .form-select {
+    width: 100%;
+    padding: 6px; /* Espaciado reducido */
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    transition: border-color 0.3s, box-shadow 0.3s; /* Transiciones suaves */
+}
+
+input:focus, .form-control:focus, .form-select:focus {
+    border-color: #1e78cd;
+    outline: none;
+    box-shadow: 0 0 5px rgba(30, 120, 205, 0.5);
+}
+
+/* Estilo de los botones */
+button {
+    width: 100px;
+    height: 35px; /* Altura reducida */
+    font-size: 12px; /* Tamaño de fuente más pequeño */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+    background-color: #1e78cd;
+    color: white;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #155a9c;
+}
+
+/* Estilo de las tablas */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+th, td {
+    padding: 10px;
+    text-align: left;
+    border: 1px solid #ddd;
+}
+
+th {
+    background-color: #f0f0f0;
+}
+
+/* Estilo para los botones de acción */
+.action-buttons {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+
+/* Estilo de los enlaces */
+a {
+    color: #1e78cd;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Estilo del modal */
+.modal-content {
+    border-radius: 0.375rem;
+}
+
+.modal-header {
+    background-color: #007bff; /* Fondo azul para el encabezado del modal */
+    color: #fff; /* Texto blanco en el encabezado del modal */
+}
+
+.modal-footer .btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+}
+
+.modal-footer .btn-primary:hover {
+    background-color: #0056b3;
+    border-color: #004085;
+}
+
+/* Estilo del cuerpo del modal */
+.modal-body {
+    padding: 1.25rem;
+}
+
+/* Estilo del título del formulario */
+h5.modal-title, legend {
+    color: #007bff; /* Color azul para el texto */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Fuente bonita */
+    font-weight: bold;
+}
+
+/* Espaciado de las secciones del formulario */
+.row.mb-3 {
+    margin-bottom: 1rem;
+}
