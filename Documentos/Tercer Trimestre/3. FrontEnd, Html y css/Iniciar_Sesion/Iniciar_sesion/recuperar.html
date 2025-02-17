@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recuperar Contraseña</title>
+    <link rel="stylesheet" href="es1.css">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <section>
+        <div class="contenedor">
+            <div class="formulario">
+                <form id="recoverForm">
+                    <h2>Recuperar Contraseña</h2>
+
+                    <div class="input-contenedor">
+                        <i class="fa-solid fa-envelope"></i>
+                        <input type="text" id="email" required>
+                        <label for="email">Correo</label>
+                    </div>
+
+                    <button type="button" onclick="recoverPassword()">Enviar enlace de recuperación</button>
+                </form>
+            </div>
+        </div>
+
+        <script>
+            function recoverPassword() {
+                const email = document.getElementById('email').value.trim();
+                let regentes = JSON.parse(localStorage.getItem('regentes')) || [];
+                const regente = regentes.find(r => r.correo === email);
+
+                if (regente) {
+                    // Simular el envío del enlace de recuperación
+                    alert('Se ha enviado un enlace de recuperación a su correo electrónico');
+
+                    // Guardar el correo para usarlo en la página de restablecimiento
+                    localStorage.setItem('resetEmail', email);
+
+                    // Redirigir a la página de restablecimiento de contraseña después de un breve retardo
+                    setTimeout(() => {
+                        window.location.href = "restablecer.html"; // Cambia a una ruta relativa
+                    }, 500); // 500 ms (0.5 segundos)
+                } else {
+                    alert("Correo no encontrado");
+                }
+            }
+        </script>
+    </section>
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restablecer Contraseña</title>
+    <link rel="stylesheet" href="es1.css">
+</head>
+<body>
+    <section>
+        <div class="contenedor">
+            <div class="formulario">
+                <form id="resetForm">
+                    <h2>Restablecer Contraseña</h2>
+
+                    <div class="input-contenedor">
+                        <i class="fa-solid fa-lock"></i>
+                        <input type="password" id="newPassword" required>
+                        <label for="newPassword">Nueva Contraseña</label>
+                    </div>
+
+                    <button type="button" onclick="resetPassword()">Restablecer</button>
+                </form>
+            </div>
+        </div>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+        <script>
+            function resetPassword() {
+                const email = localStorage.getItem('resetEmail'); // Email from the password recovery process
+                const newPassword = document.getElementById('newPassword').value;
+
+                if (newPassword.trim() === '') {
+                    alert("Por favor ingrese una nueva contraseña.");
+                    return; // Exit the function if the password is empty
+                }
+
+                const hashedNewPassword = CryptoJS.SHA256(newPassword).toString();
+
+                let regentes = JSON.parse(localStorage.getItem('regentes')) || [];
+                const index = regentes.findIndex(r => r.correo === email);
+
+                if (index !== -1) {
+                    regentes[index].contrasena = hashedNewPassword;
+                    localStorage.setItem('regentes', JSON.stringify(regentes));
+                    alert("Contraseña actualizada correctamente");
+                    window.location.href = "Iniciar_sesion.html"; // Redirigir al iniciar sesión
+                } else {
+                    alert("Correo no encontrado");
+                }
+            }
+        </script>
+    </section>
+</body>
+</html>
+
