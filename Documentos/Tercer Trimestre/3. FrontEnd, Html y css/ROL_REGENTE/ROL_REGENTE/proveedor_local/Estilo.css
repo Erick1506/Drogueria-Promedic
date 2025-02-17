@@ -1,0 +1,143 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Montserrat", sans-serif;
+}
+
+body {
+    background: #ffffff;
+    display: flex;
+    flex-direction: column;
+    background-image: url('./cuadro.jpg'); /* Asegúrate de que la ruta de la imagen sea correcta */
+    background-size: cover; /* Ajusta la imagen para cubrir todo el contenedor */
+    background-position: center; /* Centra la imagen */
+    background-repeat: no-repeat; /* Evita que la imagen se repita */
+    height: 100vh; /* Altura completa de la ventana */
+}
+
+.header {
+    width: 100%;
+    background-color: #090e0d;
+    color: white;
+    padding: 10px 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    text-align: center;
+    z-index: 1000;
+}
+
+.container {
+    max-width: 800px;
+    background-color: white;
+    border-radius: 15px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    padding: 20px;
+    margin-top: 80px; /* Aumentado para dejar espacio para el navbar */
+    overflow-y: auto; /* Permite el desplazamiento vertical */
+}
+
+.container h2 {
+    font-size: 28px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+form {
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+label {
+    display: block;
+    margin-top: 10px;
+}
+
+.container-input {
+    margin-bottom: 10px;
+}
+
+input {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #EEEEEE;
+}
+
+button {
+    width: 100%;
+    height: 45px;
+    font-size: 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+    background-color: #3d65af;
+    color: white;
+    padding: 10px;
+    text-align: center;
+}
+
+button:hover {
+    background-color: #141516;
+}
+
+a.button-link {
+    display: inline-block;
+    width: 100%;
+    height: 45px;
+    line-height: 45px;
+    font-size: 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+    text-align: center;
+    color: white;
+    background-color: #0b0c0e;
+    padding: 10px;
+    box-sizing: border-box;
+    align-items: center;
+    justify-content: center;
+}
+
+a.button-link:hover {
+    background-color: #0a0b0e;
+    text-decoration: none;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+th, td {
+    padding: 10px;
+    text-align: left;
+    border: 1px solid #ddd;
+}
+
+th {
+    background-color: #F7F7F7;
+}
+
+.action-buttons {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+
+a {
+    color: #3d4fb4;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}

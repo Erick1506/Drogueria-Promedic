@@ -1,0 +1,41 @@
+/* Asegúrate de que el contenedor esté centrado y con márgen
+}
+/* Centrar el cuadro principal */
+body {
+    background-image: url('../cuadro.jpg'); /* Ruta de la imagen */
+    background-size: cover; /* Ajusta la imagen para cubrir todo el contenedor */
+    background-position: center; /* Centra la imagen */
+    background-repeat: no-repeat; /* Evita que la imagen se repita */
+    height: 100vh; /* Altura completa de la ventana */
+}
+
+body {
+    background-color: #f5f5f5;
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.form-wrapper {
+    width: 100%;
+    max-width: 600px;
+}
+
+.form-container {
+    padding: 20px;
+}
+
+legend {
+    font-size: 1.5rem;
+    color: #333;
+    text-align: center;
+}
+
+button {
+    width: 100%;
+}

@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registros de Fórmulas Médicas</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="Registro.css" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#"><h2>Promedic</h2></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="../Crud/index.html">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../Recetas_medicas/Formulario.html">Registrar formula Medica</a>
+                    </li>
+
+                
+                </div>
+              </div>
+            </div>
+          </nav>
+    <div class="container mt-5">
+        <h3 class="text-center">Registros de Fórmulas Médicas</h3>
+        <input type="text" id="buscar" class="form-control mb-3" placeholder="Buscar por nombre">
+        <div id="registros" class="row"></div>
+    </div>
+
+    <!-- Modal para editar -->
+    <div class="modal fade" id="editarModal" tabindex="-1" aria-labelledby="editarModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editarModalLabel">Editar Registro</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="editarForm">
+                        <div class="mb-3">
+                            <label for="editIdentificacion" class="form-label">Número de Identificación</label>
+                            <input type="text" class="form-control" id="editIdentificacion" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="editNombre" class="form-label">Nombre Completo</label>
+                            <input type="text" class="form-control" id="editNombre" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="editFecha" class="form-label">Fecha de Inserción</label>
+                            <input type="date" class="form-control" id="editFecha" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="editImagen" class="form-label">Subir Nueva Imagen</label>
+                            <input type="file" class="form-control" id="editImagen" accept="image/*">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let editIndex = null;  // Variable para almacenar el índice del registro a editar
+
+        // Función para mostrar los registros almacenados en localStorage
+        function mostrarRegistros() {
+            // Obtener los registros del localStorage o inicializar una lista vacía si no hay registros
+            const registros = JSON.parse(localStorage.getItem('registros')) || [];
+
+            // Obtener el valor del campo de búsqueda y convertirlo a minúsculas para hacer la búsqueda más flexible
+            const buscar = document.getElementById('buscar').value.toLowerCase();
+
+            // Filtrar los registros cuyo nombre incluya el texto ingresado en el campo de búsqueda
+            const registrosFiltrados = registros.filter(r => r.nombre.toLowerCase().includes(buscar));
+
+            // Obtener el contenedor donde se mostrarán los registros
+            const contenedorRegistros = document.getElementById('registros');
+            contenedorRegistros.innerHTML = ''; // Limpiar el contenido del contenedor
+
+            // Recorrer los registros filtrados y generar el HTML para cada uno
+            contenedorRegistros.innerHTML = registrosFiltrados.map((receta, index) => `
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="text-center">
+                                <h5 class="card-title">${receta.nombre}</h5>
+                                <p class="card-text">Identificación: ${receta.identificacion}</p>
+                                <p class="card-text">Fecha: ${receta.fecha}</p>
+                                <img src="${receta.imagen}" alt="Imagen de fórmula médica" class="card-img-top">
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <button onclick="abrirModalEditar(${index})" class="btn btn-warning">Editar</button>
+                        </div>
+                    </div>
+                </div>
+            `).join(''); // Usar `join` para combinar todos los registros en un solo string de HTML
+        }
+
+        // Función para eliminar un registro específico
+        function eliminarRegistro(index) {
+            const registros = JSON.parse(localStorage.getItem('registros')) || [];  // Obtener los registros del localStorage
+            registros.splice(index, 1);  // Eliminar el registro en el índice dado
+            localStorage.setItem('registros', JSON.stringify(registros));  // Guardar los cambios en localStorage
+            mostrarRegistros();  // Volver a mostrar los registros actualizados
+        }
+
+        // Función para abrir el modal de edición y cargar los datos del registro a editar
+        function abrirModalEditar(index) {
+            const registros = JSON.parse(localStorage.getItem('registros')) || [];  // Obtener los registros del localStorage
+            const receta = registros[index];  // Obtener el registro seleccionado
+
+            editIndex = index;  // Guardar el índice del registro a editar
+
+            // Llenar los campos del formulario de edición con los datos del registro seleccionado
+            document.getElementById('editIdentificacion').value = receta.identificacion;
+            document.getElementById('editNombre').value = receta.nombre;
+            document.getElementById('editFecha').value = receta.fecha;
+
+            // Mostrar el modal de edición utilizando Bootstrap
+            new bootstrap.Modal(document.getElementById('editarModal')).show();
+        }
+
+        // Manejar el evento de envío del formulario de edición
+        document.getElementById('editarForm').addEventListener('submit', function(event) {
+            event.preventDefault();  // Evitar que el formulario se envíe automáticamente
+
+            const registros = JSON.parse(localStorage.getItem('registros')) || [];  // Obtener los registros del localStorage
+            const receta = registros[editIndex];  // Obtener el registro que se está editando
+
+            // Actualizar los datos del registro con los valores ingresados en el formulario
+            receta.identificacion = document.getElementById('editIdentificacion').value;
+            receta.nombre = document.getElementById('editNombre').value;
+            receta.fecha = document.getElementById('editFecha').value;
+
+            // Verificar si se seleccionó una nueva imagen para el registro
+            const nuevaImagen = document.getElementById('editImagen').files[0];
+            if (nuevaImagen) {
+                // Si hay una nueva imagen, convertirla a base64
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    receta.imagen = e.target.result;  // Asignar la imagen convertida en base64 al registro
+                    actualizarRegistro(registros, receta);  // Actualizar el registro en localStorage y mostrar los cambios
+                };
+                reader.readAsDataURL(nuevaImagen);  // Leer la nueva imagen seleccionada
+            } else {
+                // Si no se seleccionó una nueva imagen, solo actualizar los demás datos
+                actualizarRegistro(registros, receta);
+            }
+        });
+
+        // Función para actualizar el registro en localStorage y volver a mostrar los registros actualizados
+        function actualizarRegistro(registros, receta) {
+            registros[editIndex] = receta;  // Reemplazar el registro editado en la lista de registros
+            localStorage.setItem('registros', JSON.stringify(registros));  // Guardar los registros actualizados en localStorage
+            mostrarRegistros();  // Mostrar los registros actualizados
+
+            // Ocultar el modal de edición utilizando Bootstrap
+            bootstrap.Modal.getInstance(document.getElementById('editarModal')).hide();
+        }
+
+        // Añadir un listener al campo de búsqueda para que actualice los registros filtrados cuando el usuario escriba algo
+        document.getElementById('buscar').addEventListener('input', mostrarRegistros);
+
+        // Mostrar los registros al cargar la página
+        mostrarRegistros();
+    </script>    
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+

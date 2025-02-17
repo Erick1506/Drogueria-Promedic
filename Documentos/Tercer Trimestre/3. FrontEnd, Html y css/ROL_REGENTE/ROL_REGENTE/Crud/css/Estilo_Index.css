@@ -1,0 +1,64 @@
+/* Asegúrate de que el contenedor esté centrado y con márgen
+}
+/* Centrar el cuadro principal */
+
+.container {
+    margin-top: 50px;
+    margin-bottom: 50px;
+    max-width: 90%; /* Ajusta el tamaño del contenedor */
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  /* Ajustar la columna de Estado */
+  .table th:nth-child(13),
+  .table td:nth-child(13) {
+    width: 200px; /* Ajusta este valor según el tamaño deseado */
+  }
+  
+
+/* Estilos para el botón de notificación */
+.btn-primary {
+    margin-bottom: 20px; /* Separación con el contenido inferior */
+}
+
+/* Ajustes para la tabla */
+.table {
+    margin-top: 20px;
+}
+
+/* Ajustes para el ícono del botón */
+.btn-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #000; /* Fondo negro */
+    border-radius: 50%; /* Forma circular */
+    width: 30px; /* Ajusta el tamaño del contenedor */
+    height: 30px; /* Ajusta el tamaño del contenedor */
+    text-decoration: none; /* Quita el subrayado del enlace */
+    color: #fff; /* Color del ícono */
+    margin-left: 20px;
+    border: none; /* Elimina el borde por defecto */
+    cursor: pointer; /* Cambia el cursor al pasar sobre el ícono */
+}
+
+.btn-icon svg {
+    width: 16px; /* Tamaño del ícono */
+    height: 16px; /* Tamaño del ícono */
+}
+
+/* Estilo adicional para la toast */
+.toast {
+    border-radius: 0.5rem;
+}
+#notification-container {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 9999;
+    max-width: 300px;
+}
+.alert {
+    margin-bottom: 10px;
+}

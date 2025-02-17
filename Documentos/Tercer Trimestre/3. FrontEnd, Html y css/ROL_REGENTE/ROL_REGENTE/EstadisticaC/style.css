@@ -1,0 +1,57 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: #090e12;
+    display: flex;
+    flex-direction: column;
+}
+
+.navbar {
+    background-color: #090e12; /* Cambia el color del navbar al mismo que el fondo del body */
+    z-index: 1000; /* Mantiene la barra de navegación por encima de otros elementos */
+    width: 100%;
+}
+
+.content {
+    margin-top: 80px; /* Deja espacio debajo del navbar */
+}
+
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 50px; /* Ajusta el espacio entre los gráficos */
+}
+
+.chart {
+    padding: 2rem;
+    border: 1px solid #0461ec;
+    border-radius: 1rem;
+    background: #1c2935;
+    box-shadow: 0 0 16px rgba(0, 0, 0, 0.8);
+}
+
+/* Modificar el estilo de la fecha y hora */
+.live-time-container {
+    position: absolute; /* Coloca la fecha en la parte superior derecha */
+    top: 0; /* Alinea con el navbar */
+    right: 10px; /* Coloca el contenedor hacia la derecha */
+    background-color: #1c2935; /* Mismo fondo que los cuadros chart */
+    border: 1px solid #0461ec; /* Mismo borde que los cuadros chart */
+    padding: 10px;
+    border-radius: 1rem; /* Mismo borde redondeado que los cuadros chart */
+    z-index: 1100; /* Asegura que esté visible por encima del contenido */
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Centra el contenido horizontalmente */
+    height: 56px; /* Ajusta la altura para que coincida con el navbar */
+}
+
+.live-time-container p {
+    font-size: 18px; /* Tamaño más grande para la fecha */
+    color: #ffffff; /* Blanco para contraste */
+}

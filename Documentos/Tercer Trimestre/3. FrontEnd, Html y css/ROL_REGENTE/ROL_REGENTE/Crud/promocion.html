@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Promociones</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body{
+            background-image: url('../Crud/cuadro.jpg');
+    
+        }
+        .promocion-card {
+            display: flex;
+            flex-direction: column;
+            margin: 10px;
+        }
+        .promociones-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#"><h2>Promedic</h2></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="../Crud/index.html">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../EstadisticaC/index.html">Estadísticas</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Productos
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="promocion.html">Promociones</a></li>
+                            <li><a class="dropdown-item" href="Agregar/Agregar.html">Agregar Producto</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Fórmulas médicas
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="../Recetas_medicas/Registros.html">Fórmulas registradas</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <form class="d-flex mx-2">
+                    <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Search">
+                    <button class="btn btn-custom" type="submit">Buscar</button>
+                </form>
+                <div class="dropdown">
+                  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownProfileButton" data-bs-toggle="dropdown" aria-expanded="false">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person" viewBox="0 0 16 16">
+                      <path d="M8 8a3 3 0 1 0-3-3 3 3 0 0 0 3 3zm0 1a4 4 0 0 0-4 4v1h8v-1a4 4 0 0 0-4-4z"/>
+                    </svg>
+                  </button>
+                  <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownProfileButton">
+                    <li><a class="dropdown-item" href="../Iniciar sesion/Iniciar_sesion.html">Cerrar sesión</a></li>
+                    <li><a class="dropdown-item" href="#">Registrar regente</a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </nav>
+
+    <div class="container mt-5">
+        <h1 class="text-center">Promociones Agregadas</h1>
+        <div id="promocionesContainer" class="promociones-container mt-4"></div>
+    </div>
+
+    <!-- Modal para editar promoción -->
+    <div class="modal fade" id="modalEditarPromocion" tabindex="-1" aria-labelledby="modalEditarPromocionLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalEditarPromocionLabel">Editar Promoción</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <input type="hidden" id="promocionIndex">
+                    <div class="mb-3">
+                        <label for="editarNombre" class="form-label">Nombre</label>
+                        <input type="text" id="editarNombre" class="form-control">
+                    </div>
+                    <div class="mb-3">
+                        <label for="editarDescripcion" class="form-label">Descripción</label>
+                        <input type="text" id="editarDescripcion" class="form-control">
+                    </div>
+                    <div class="mb-3">
+                        <label for="editarPrecio" class="form-label">Precio</label>
+                        <input type="number" id="editarPrecio" class="form-control" step="0.01">
+                    </div>
+                    <div class="mb-3">
+                        <label for="editarCantidad" class="form-label">Cantidad</label>
+                        <input type="number" id="editarCantidad" class="form-control">
+                    </div>
+                    <div class="mb-3">
+                        <label for="editarFechaFinPromocion" class="form-label">Fecha Fin de Promoción</label>
+                        <input type="date" id="editarFechaFinPromocion" class="form-control">
+                    </div>
+                    <div class="mb-3">
+                        <label for="editarTipoPromocion" class="form-label">Tipo de Promoción</label>
+                        <select class="form-select" id="editarTipoPromocion">
+                            <option value="dos_por_uno">2 por 1</option>
+                            <option value="descuento">Descuento</option>
+                        </select>
+                    </div>
+                    <div class="mb-3" id="editarDescuentoField" style="display:none;">
+                        <label for="editarDescuento" class="form-label">Descuento (%)</label>
+                        <input type="number" id="editarDescuento" class="form-control" step="0.01">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" id="guardarEdicion">Guardar Cambios</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const promocionesContainer = document.getElementById('promocionesContainer');
+            const guardarEdicion = document.getElementById('guardarEdicion');
+            const editarNombre = document.getElementById('editarNombre');
+            const editarDescripcion = document.getElementById('editarDescripcion');
+            const editarPrecio = document.getElementById('editarPrecio');
+            const editarCantidad = document.getElementById('editarCantidad');
+            const editarFechaFinPromocion = document.getElementById('editarFechaFinPromocion');
+            const editarTipoPromocion = document.getElementById('editarTipoPromocion');
+            const editarDescuentoField = document.getElementById('editarDescuentoField');
+            const editarDescuento = document.getElementById('editarDescuento');
+            const promociones = JSON.parse(localStorage.getItem('productos')) || [];
+            const promocionesList = promociones.filter(producto => producto.estado === 'promocion');
+
+            function renderPromociones() {
+                promocionesContainer.innerHTML = '';
+                promocionesList.forEach((promocion, index) => {
+                    const promocionDiv = document.createElement('div');
+                    promocionDiv.classList.add('card', 'promocion-card');
+                    promocionDiv.innerHTML = `
+                        <div class="card-body">
+                            <h5 class="card-title">${promocion.nombre}</h5>
+                            <p class="card-text"><strong>Descripción:</strong> ${promocion.descripcion || 'N/A'}</p>
+                            <p class="card-text"><strong>Precio:</strong> $${parseFloat(promocion.precio).toFixed(2)}</p>
+                            <p class="card-text"><strong>Cantidad:</strong> ${promocion.cantidad} ${promocion.unidad}</p>
+                            <p class="card-text"><strong>Fecha Fin de Promoción:</strong> ${promocion.fechaFinPromocion || 'N/A'}</p>
+                            <p class="card-text"><strong>Tipo de Promoción:</strong> ${promocion.tipoPromocion.replace('_', ' ')}</p>
+                            <p class="card-text"><strong>Descuento:</strong> ${promocion.descuento ? promocion.descuento + '%' : 'N/A'}</p>
+                            <button class="btn btn-warning" onclick="editarPromocion(${index})">Editar</button>
+                        </div>
+                    `;
+                    promocionesContainer.appendChild(promocionDiv);
+                });
+            }
+
+            window.editarPromocion = function(index) {
+                const promocion = promocionesList[index];
+                document.getElementById('promocionIndex').value = index;
+                editarNombre.value = promocion.nombre;
+                editarDescripcion.value = promocion.descripcion;
+                editarPrecio.value = promocion.precio;
+                editarCantidad.value = promocion.cantidad;
+                editarFechaFinPromocion.value = promocion.fechaFinPromocion;
+                editarTipoPromocion.value = promocion.tipoPromocion;
+                editarDescuento.value = promocion.descuento || '';
+                editarDescuentoField.style.display = promocion.tipoPromocion === 'descuento' ? 'block' : 'none';
+
+                $('#modalEditarPromocion').modal('show');
+            };
+
+            editarTipoPromocion.addEventListener('change', function() {
+                editarDescuentoField.style.display = this.value === 'descuento' ? 'block' : 'none';
+            });
+
+            guardarEdicion.addEventListener('click', function() {
+                const index = document.getElementById('promocionIndex').value;
+                promocionesList[index].nombre = editarNombre.value;
+                promocionesList[index].descripcion = editarDescripcion.value;
+                promocionesList[index].precio = parseFloat(editarPrecio.value);
+                promocionesList[index].cantidad = parseInt(editarCantidad.value);
+                promocionesList[index].fechaFinPromocion = editarFechaFinPromocion.value;
+                promocionesList[index].tipoPromocion = editarTipoPromocion.value;
+                promocionesList[index].descuento = editarDescuento.value ? parseFloat(editarDescuento.value) : '';
+
+                localStorage.setItem('productos', JSON.stringify(promociones));
+                $('#modalEditarPromocion').modal('hide');
+                renderPromociones();
+            });
+
+            renderPromociones();
+        });
+    </script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Fórmula Médica</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#"><h2>Promedic</h2></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="../Crud/index.html">Inicio</a>
+                    </li>
+                    <li>
+                        <a class="nav-link active" aria-current="page" href="../Recetas_medicas/Formulario.html">Agregar fórmula</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    
+    <div class="container mt-5">
+        <h1 class="text-center mb-4">Editar Fórmula Médica</h1>
+        
+        <!-- Formulario de edición -->
+        <form action="actualizar_formula.php" method="post">
+            <input type="hidden" name="id" value="1"> <!-- Asegúrate de pasar el ID correcto -->
+            <div class="mb-3">
+                <label for="nombre" class="form-label">Nombre</label>
+                <input type="text" class="form-control" id="nombre" name="nombre" value="Sara Garcia" required>
+            </div>
+            <div class="mb-3">
+                <label for="identificacion" class="form-label">Número de Identificación</label>
+                <input type="text" class="form-control" id="identificacion" name="identificacion" value="10957458963" required>
+            </div>
+            <div class="mb-3">
+                <label for="fecha" class="form-label">Fecha de Inserción</label>
+                <input type="date" class="form-control" id="fecha" name="fecha" value="2024-09-07" required>
+            </div>
+            <div class="mb-3">
+                <label for="imagen" class="form-label">Imagen</label>
+                <input type="text" class="form-control" id="imagen" name="imagen" value="ruta_a_imagen.jpg" required>
+            </div>
+            <div class="mb-3">
+                <button type="submit" class="btn btn-primary">Actualizar</button>
+                <button type="button" class="btn btn-secondary" onclick="window.history.back()">Cancelar</button>
+            </div>
+        </form>
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
