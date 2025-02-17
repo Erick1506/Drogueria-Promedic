@@ -1,0 +1,65 @@
+/* Reseteo de márgenes y paddings para todos los elementos */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: #ffffff;
+    display: flex;
+    flex-direction: column;
+    background-image: url('./cuadro.jpg'); /* Asegúrate de que la ruta de la imagen sea correcta */
+    background-size: cover; /* Ajusta la imagen para cubrir todo el contenedor */
+    background-position: center; /* Centra la imagen */
+    background-repeat: no-repeat; /* Evita que la imagen se repita */
+    height: 100vh; /* Altura completa de la ventana */
+}
+
+.navbar {
+    background-color: #090e12; /* Cambia el color del navbar al mismo que el fondo del body */
+    z-index: 1000; /* Mantiene la barra de navegación por encima de otros elementos */
+    width: 100%;
+}
+
+.content {
+    margin-top: 80px; /* Deja espacio debajo del navbar */
+}
+
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 50px; /* Ajusta el espacio entre los gráficos */
+}
+
+.chart {
+    padding: 2rem;
+    border: 1px solid #0461ec;
+    border-radius: 1rem;
+    background: -webkit-linear-gradient(180deg, #ffffff,#ffffff,#000000);
+    background: linear-gradient(180deg, #ffffff, #a2c5d6, #fffdfd); 
+    box-shadow: 0 0 16px rgba(0, 0, 0, 0.8);
+}
+
+/* Modificar el estilo de la fecha y hora */
+.live-time-container {
+    position: absolute; /* Coloca la fecha en la parte superior derecha */
+    top: 0; /* Alinea con el navbar */
+    right: 10px; /* Coloca el contenedor hacia la derecha */
+    background-color: #000000; /* Mismo fondo que los cuadros chart */
+    border: 1px solid #0461ec; /* Mismo borde que los cuadros chart */
+    padding: 10px;
+    border-radius: 1rem; /* Mismo borde redondeado que los cuadros chart */
+    z-index: 1100; /* Asegura que esté visible por encima del contenido */
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Centra el contenido horizontalmente */
+    height: 56px; /* Ajusta la altura para que coincida con el navbar */
+}
+
+.live-time-container p {
+    font-size: 18px; /* Tamaño más grande para la fecha */
+    color: #ffffff; /* Blanco para contraste */
+}
+

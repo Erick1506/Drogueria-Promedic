@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://kit.fontawesome.com/a2dd6045c4.js" crossorigin="anonymous"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iniciar sesión</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <section>
+        <div class="contenedor">
+            <div class="formulario">
+                <form id="loginForm">
+                    <h2>Iniciar Sesión</h2>
+
+                    <div class="input-contenedor">
+                        <i class="fa-solid fa-envelope"></i>
+                        <input type="text" id="email" required>
+                        <label for="#">Correo</label>
+                    </div>
+
+                    <div class="input-contenedor">
+                        <i class="fa-solid fa-lock"></i>
+                        <input type="password" id="password" required>
+                        <label for="#">Contraseña</label>
+                    </div>
+
+                    <button type="button" onclick="login()">Acceder</button>
+
+                    <div class="registrar">
+                        <p>Recuperar <a href="#">Contraseña</a></p>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+
+        <script>
+            function login() {
+                const email = document.getElementById('email').value;
+                const password = document.getElementById('password').value;
+
+                // Hashear la contraseña con SHA-256 usando CryptoJS
+                const hashedPassword = CryptoJS.SHA256(password).toString();
+
+                // Verificación de roles con contraseñas hash en SHA-256
+                const adminHashedPassword = CryptoJS.SHA256("admin123").toString();
+
+                // Verificación para admin
+                if (email === "erickza@gmail.com" && hashedPassword === adminHashedPassword) {
+                    window.location.href = "http://localhost/PROMEDIC/Crud/admin_dashboard.html"; // Redirige al admin
+                    return;
+                }
+
+                // Verificación para regentes almacenados en localStorage
+                let regentes = JSON.parse(localStorage.getItem('regentes')) || [];
+
+                // Buscar si el correo y la contraseña coinciden
+                const regente = regentes.find(r => r.correo === email && CryptoJS.SHA256(r.contrasena).toString() === hashedPassword);
+
+                if (regente) {
+                    alert("Inicio de sesión exitoso");
+                    // Redirigir según el rol del regente
+                    if (regente.rol === "Regente") {
+                        window.location.href = "http://localhost/PROMEDIC/ROL_Regente/Crud/index.html"; // Redirigir al dashboard del regente
+                    } else if (regente.rol === "Admin") {
+                        window.location.href = "http://localhost/PROMEDIC/ROL_ADMIN/Crud/index.html"; // Redirigir al dashboard del admin
+                    }
+                } else {
+                    alert("Correo o contraseña incorrectos");
+                }
+            }
+        </script>
+    </section>
+</body>
+</html>

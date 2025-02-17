@@ -1,0 +1,31 @@
+body {
+    background: #ffffff;
+    display: flex;
+    flex-direction: column;
+    background-image: url('./cuadro.jpg'); /* Asegúrate de que la ruta de la imagen sea correcta */
+    background-size: cover; /* Ajusta la imagen para cubrir todo el contenedor */
+    background-position: center; /* Centra la imagen */
+    background-repeat: no-repeat; /* Evita que la imagen se repita */
+    height: 100vh; /* Altura completa de la ventana */
+}
+.card {
+    margin-bottom: 30px;
+    height: 350px;
+}
+.card-img-top {
+    max-height: 150px;
+    object-fit: cover;
+}
+.card-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.card-body .text-center {
+    margin-bottom: auto;
+}
+.card-footer {
+    text-align: center;
+}
+
+
