@@ -1,0 +1,62 @@
+/* Fondo de la página, asegurando que la imagen de fondo se mantenga fija */
+body {
+    margin: 0; /* Elimina márgenes por defecto */
+    padding: 0; /* Elimina el padding por defecto */
+    height: 100vh; /* Asegura que el body tenga la altura completa */
+    display: flex;
+    flex-direction: column;
+    background-color: #ffffff; /* Fallback color si no carga la imagen */
+}
+
+body::before {
+    content: ""; /* Necesario para agregar un pseudo-elemento */
+    position: fixed; /* Fija el fondo */
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('./cuadro.jpg'); /* Ruta correcta de la imagen */
+    background-size: cover; /* Asegura que la imagen cubra toda el área */
+    background-position: center; /* Centra la imagen */
+    background-repeat: no-repeat; /* No repite la imagen */
+    z-index: -1; /* Coloca el fondo detrás del contenido */
+}
+
+/* Contenedor para todo el contenido que se desplaza */
+.main-content {
+    flex: 1; /* Permite que el contenido se expanda */
+    overflow-y: auto; /* Habilita el scroll cuando el contenido exceda el tamaño de la pantalla */
+    padding: 20px; /* Espaciado interno */
+}
+
+/* Estilos para las tarjetas */
+.card {
+    margin-bottom: 30px;
+    height: 350px;
+    position: relative;
+    z-index: 1; /* Asegura que las tarjetas estén sobre el fondo */
+}
+
+/* Imagen dentro de la tarjeta */
+.card-img-top {
+    max-height: 150px;
+    object-fit: cover;
+}
+
+/* Contenido de la tarjeta */
+.card-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+/* Ajuste de los elementos dentro del cuerpo de la tarjeta */
+.card-body .text-center {
+    margin-bottom: auto;
+}
+
+/* Pie de la tarjeta */
+.card-footer {
+    text-align: center;
+}
+
